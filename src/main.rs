@@ -1,3 +1,10 @@
+mod entity;
+mod mapper;
+mod repository;
+mod controller;
+mod service;
+mod dto;
+
 use axum::{
     extract::{Path, State},
     http::StatusCode,
