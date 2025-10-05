@@ -1,5 +1,5 @@
 use sea_orm::{DatabaseConnection, DbErr, EntityTrait, QueryFilter, ColumnTrait, ActiveModelTrait};
-use crate::entity::customer;
+use crate::entity::{customer};
 
 pub struct CustomerRepository {
     db: DatabaseConnection
@@ -14,6 +14,14 @@ impl CustomerRepository {
         let active_model: customer::ActiveModel = customer.into();
         let res = active_model.insert(&self.db).await?;
         Ok(res)
+    }
+
+    pub async fn find_by_id(&self, id: u32) -> Option<customer::Model> {
+        customer::Entity::find_by_id(id)
+            .one(&self.db)
+            .await
+            .ok()
+            .flatten()
     }
 
     pub async fn find_by_account_number(&self, account_number: &str) -> Option<customer::Model> {

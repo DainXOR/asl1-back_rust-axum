@@ -24,6 +24,5 @@ impl TransactionRepository {
             .flatten()
     }
 
-    // Puedes agregar más métodos según tus necesidades
 }
 
